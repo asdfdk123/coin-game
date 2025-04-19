@@ -3,6 +3,10 @@ const cors = require("cors");
 const mysql = require("mysql2/promise");
 require("dotenv").config();
 
+const rankingRoutes = require("./routes/ranking")(pool);
+app.use("/api", rankingRoutes);
+
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
