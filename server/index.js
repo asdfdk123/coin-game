@@ -3,8 +3,8 @@ const cors = require("cors");
 const mysql = require("mysql2/promise");
 require("dotenv").config();
 
-const rankingRoutes = require("./routes/ranking")(pool);
-app.use("/api", rankingRoutes);
+
+
 
 
 const app = express();
@@ -22,8 +22,10 @@ const pool = mysql.createPool({
 
 // 📌 라우트 파일 연결
 const scoreRoutes = require("./routes/score")(pool);
-app.use("/api", scoreRoutes);
+const rankingRoutes = require("./routes/ranking")(pool);
 
+app.use("/api", scoreRoutes);
+app.use("/api", rankingRoutes);
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
